@@ -1,6 +1,14 @@
 /** Array que funciona como Base de Datos */
-let users = []
-users = JSON.parse(localStorage.getItem("listUsers")) 
+users=[]
+
+//condicion para que local storage no devuelva null
+let list = JSON.parse(localStorage.getItem("listUsers")) 
+if(list==null){
+	users=[]
+}else{
+	users=list
+}
+//fin de condicional
 
 /** Fin de Array que funciona como base de datos */
 /**Crear nuevo Usuario*/
@@ -10,7 +18,7 @@ function enviar() {
 	let v_apellido = document.getElementById("apellido").value;
 	let v_correo = document.getElementById("correo").value;
 	let v_cargo = document.getElementById("cargo").value;
-	let usuario = { id: users.length, nombre: v_nombre, apellido: v_apellido, correo: v_correo, cargo: v_cargo }
+	let usuario = { id: users.length , nombre: v_nombre, apellido: v_apellido, correo: v_correo, cargo: v_cargo }
 
 	/** Ver que no se repita el correo */
 	var cor = []
