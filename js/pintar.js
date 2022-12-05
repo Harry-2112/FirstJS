@@ -5,48 +5,36 @@ let UsersProperty = Object.keys(list[0])
 let arriba = "fas fa-arrow-up"
 let abajo = "fa-solid fa-arrow-down"
 
-
-
-function iconoAbajo() {
-	eliminarIcono()
-	let icon = document.createElement('i');
-	id.append(icon)
-	icon.className = abajo
-	icon.style.color = "#fff"
-	icon.style.marginLeft = "10px"
-	icon.style.border = "1px solid #fff"
-}
-function eliminarIcono() {
-	id.textContent = "id"
-}
-function iconoArriba() {
-	eliminarIcono()
-	let icon = document.createElement('i');
-	id.append(icon)
-	icon.className = arriba
-	icon.style.color = "#fff"
-	icon.style.marginLeft = "10px"
-	icon.style.border = "1px solid #fff"
-}
-
 function cabecera() {
 	/**Creamos la cabecera */
 	let tr1 = document.createElement('tr');
 	table.append(tr1)
 	for (const i in UsersProperty) {
 		let th = document.createElement('th')
+		let iconoArriba = document.createElement('i');
+		let iconoAbajo = document.createElement('i');
 		if (Object.hasOwnProperty.call(UsersProperty, i)) {
 			const element = UsersProperty[i];
-			th.textContent = element
+			th.textContent = element 
+			th.append(iconoAbajo)
+			iconoAbajo.className = abajo
+			iconoAbajo.id="abajo"
+			th.append(iconoArriba)
+			iconoArriba.className= arriba
+			iconoArriba.id="arriba"
 			th.id = element
 			tr1.append(th)
 		}
 	}
-	iconoAbajo()
+
+
+
 
 	/**Fin de la cabecera */
 }
 cabecera()
+
+
 
 /**cuerpo */
 function cuerpo() {
@@ -66,49 +54,48 @@ function cuerpo() {
 		}
 	}
 
-	let id = document.getElementById('id');
-	let nombre = document.getElementById('nombre');
-	let apellido = document.getElementById('apellido');
-	let correo = document.getElementById('correo');
-	let cargo = document.getElementById('cargo');
+	 let id = document.getElementById('id');
+	 let nombre = document.getElementById('nombre');
+	 let apellido = document.getElementById('apellido');
+	 let correo = document.getElementById('correo');
+	 let cargo = document.getElementById('cargo');
+	 
+	 id.addEventListener('click', () => {
+	 	ordenar('id')
+	 	eliminarCuerpo()
+	 	cuerpo()
+	 	cambiar()
+	 })
+
+	 nombre.addEventListener('click', () => {
+	 	ordenar('nombre')
+	 	eliminarCuerpo()
+	 	cuerpo()
+
+	 })
 
 
-	id.addEventListener('click', () => {
-		ordenar('id')
-		eliminarCuerpo()
-		cuerpo()
-	})
+	 apellido.addEventListener('click', () => {
+	 	ordenar('apellido')
+	 	eliminarCuerpo()
+	 	cuerpo()
+
+	 })
 
 
-	nombre.addEventListener('click', () => {
-		ordenar('nombre')
-		eliminarCuerpo()
-		cuerpo()
+	 cargo.addEventListener('click', () => {
+	 	ordenar('cargo')
+	 	eliminarCuerpo()
+	 	cuerpo()
 
-	})
+	 })
 
+	 correo.addEventListener('click', () => {
+	 	ordenar('correo')
+	 	eliminarCuerpo()
+	 	cuerpo()
 
-	apellido.addEventListener('click', () => {
-		ordenar('apellido')
-		eliminarCuerpo()
-		cuerpo()
-
-	})
-
-
-	cargo.addEventListener('click', () => {
-		ordenar('cargo')
-		eliminarCuerpo()
-		cuerpo()
-
-	})
-
-	correo.addEventListener('click', () => {
-		ordenar('correo')
-		eliminarCuerpo()
-		cuerpo()
-
-	})
+	 })
 }
 function eliminarCuerpo() {
 	table.innerHTML = ""
@@ -118,30 +105,34 @@ cuerpo()
 /**Fin del cuerpo */
 
 
+
 /**prueva */
-var activador = 0
-function ordenar(argument) {
-	if (activador != 0) {
-		if (argument == 'id') {
-			list.sort((a, b) => a[argument] - b[argument])
-			activador = 0
-			return list
-		} else {
-			list.sort((a, b) => a[argument].localeCompare(b[argument]))
-			activador = 0
-			return list
-		}
-	} else {
-		if (argument == 'id') {
-			list.sort((a, b) => b[argument] - a[argument])
-			activador = 1
-			return list
-		} else {
-			list.sort((a, b) => b[argument].localeCompare(a[argument]))
-			activador = 1
-			return list
-		}
-	}
 
 
-}
+
+ var activador = 0
+ function ordenar(argument) {
+ 	if (activador != 0) {
+ 		if (argument == 'id') {
+ 			list.sort((a, b) => a[argument] - b[argument])
+ 			activador = 0
+ 			return list
+ 		} else {
+ 			list.sort((a, b) => a[argument].localeCompare(b[argument]))
+ 			activador = 0
+ 			return list
+ 		}
+ 	} else {
+ 		if (argument == 'id') {
+ 			list.sort((a, b) => b[argument] - a[argument])
+ 			activador = 1
+ 			return list
+ 		} else {
+ 			list.sort((a, b) => b[argument].localeCompare(a[argument]))
+ 			activador = 1
+ 			return list
+ 		}
+ 	}
+
+
+ }
