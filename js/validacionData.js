@@ -169,7 +169,7 @@ function editarUsuario(){
 	let usuarioEditado = { id: v_id , nombre: v_nombre, apellido: v_apellido, correo: v_correo, cargo: v_cargo }
 
 	localStorage.setItem('usuarioEditado',JSON.stringify(usuarioEditado))
-	window.location.href = "../index.html";
+	window.location.href = "./../index.html";
 }
 
 btn.addEventListener('click',()=>{
