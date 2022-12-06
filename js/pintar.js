@@ -89,7 +89,6 @@ function cuerpo() {
 		ordenar('id')
 		eliminarCuerpo()
 		cuerpo()
-		cambiar()
 	})
 
 	nombre.addEventListener('click', () => {
@@ -132,9 +131,6 @@ cuerpo()
 
 
 /**prueva */
-
-
-
 var activador = 0
 function ordenar(argument) {
 	if (activador != 0) {
@@ -159,5 +155,43 @@ function ordenar(argument) {
 		}
 	}
 
-
 }
+
+
+/**Data de los empleados links */
+/**Locale storage */
+
+let Eusers = []
+let Elist = JSON.parse(localStorage.getItem("listUsers")) 
+if(Elist==null){
+	Eusers=[]
+}else{
+	Eusers=Elist
+}
+console.log(Eusers);
+
+let ArraysID=[]
+for(let i = 0;Eusers.length>i;i++){
+    let suId='id_'+i
+    let Sid = document.getElementById(suId)
+    ArraysID.push(Sid)
+}
+
+
+let etiquetas = document.querySelectorAll('td a');
+let Nlinks =[];
+for(let i =0;etiquetas.length>i;i++){
+	let e = etiquetas[i]
+	e.href="/data.html"
+	Nlinks.push(e)
+}
+
+//Seleccionamos las etiquetas 
+idLinks = []
+for(let i =0; Nlinks.length>i;i++){
+	let element = Nlinks[i].id
+	let eS = element.split('_')
+	eS.shift(eS[0])
+	idLinks.push(JSON.parse(eS))
+}
+console.log(idLinks);
