@@ -190,7 +190,7 @@ let etiquetas = document.querySelectorAll('td a');
 let Nlinks = [];
 for (let i = 0; etiquetas.length > i; i++) {
 	let e = etiquetas[i]
-	e.href = "/data.html"
+	e.href = "./data.html"
 	Nlinks.push(e)
 }
 
