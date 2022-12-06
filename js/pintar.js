@@ -45,6 +45,7 @@ if (usuarioEditado == null) {
 	let idUsuarioEditado = parseInt(usuarioEditado.id)
 	list[idUsuarioEditado] = usuarioEditado
 }
+localStorage.setItem('listUsers',JSON.stringify(list))
 
 function cuerpo() {
 	for (const index in list) {
@@ -178,6 +179,7 @@ if (Elist == null) {
 }
 console.log(Eusers);
 
+
 let ArraysID = []
 for (let i = 0; Eusers.length > i; i++) {
 	let suId = 'id_' + i
@@ -190,7 +192,7 @@ let etiquetas = document.querySelectorAll('td a');
 let Nlinks = [];
 for (let i = 0; etiquetas.length > i; i++) {
 	let e = etiquetas[i]
-	e.href = "./data.html"
+	e.href = "/data.html"
 	Nlinks.push(e)
 }
 
