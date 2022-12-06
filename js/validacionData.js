@@ -100,6 +100,7 @@ formulario.addEventListener('submit', (e) => {
 /* FIN JS DEL FORMULARIO */
 
 /**Seleccionamos Los inputs para hacerlos disables*/
+
 let Ninputs = document.querySelectorAll('input')
 let select = document.querySelector('select')
 let btn = document.getElementById('btn')
@@ -129,4 +130,49 @@ let id = document.getElementById('id')
 id.disabled=true
 })
 
+
+//Ingresamos los datos
+
+let Eusers = []
+let Elist = JSON.parse(localStorage.getItem("listUsers"))
+if (Elist == null) {
+	Eusers = []
+} else {
+	Eusers = Elist
+}
+
+let idSeleccionado = parseInt(localStorage.getItem('numeroId'))
+let usuarioSeleccionado = Eusers[idSeleccionado];
+
+//llamos al los datos seleccionados
+let id = document.getElementById('id')
+let nombre =  document.getElementById('nombre')
+let apellido =  document.getElementById('apellido')
+let correo =  document.getElementById('correo')
+let cargo =  document.getElementById('cargo')
+
+id.value = usuarioSeleccionado.id
+nombre.value = usuarioSeleccionado.nombre
+apellido.value = usuarioSeleccionado.apellido
+correo.value = usuarioSeleccionado.correo
+cargo.value = usuarioSeleccionado.cargo
+
+//editar usuarios
+console.log(Eusers);
+
+function editarUsuario(){
+	let v_id = document.getElementById('id').value;
+	let v_nombre = document.getElementById("nombre").value;
+	let v_apellido = document.getElementById("apellido").value;
+	let v_correo = document.getElementById("correo").value;
+	let v_cargo = document.getElementById("cargo").value;
+	let usuarioEditado = { id: v_id , nombre: v_nombre, apellido: v_apellido, correo: v_correo, cargo: v_cargo }
+
+	localStorage.setItem('usuarioEditado',JSON.stringify(usuarioEditado))
+	window.location.href = "../index.html";
+}
+
+btn.addEventListener('click',()=>{
+	editarUsuario()
+})
 

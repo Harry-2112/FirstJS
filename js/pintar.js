@@ -36,8 +36,16 @@ function cabecera() {
 cabecera()
 
 
-
 /**cuerpo */
+let usuarioEditado = JSON.parse(localStorage.getItem('usuarioEditado'))
+console.log(usuarioEditado);
+if (usuarioEditado == null) {
+	list = list
+} else {
+	let idUsuarioEditado = parseInt(usuarioEditado.id)
+	list[idUsuarioEditado] = usuarioEditado
+}
+
 function cuerpo() {
 	for (const index in list) {
 		if (Object.hasOwnProperty.call(list, index)) {
@@ -56,7 +64,7 @@ function cuerpo() {
 
 	}
 
-/**Data de los empleados */
+	/**Data de los empleados */
 	let trs = document.querySelectorAll('table tr');
 	let arrTrs = []
 	for (let i = 0; trs.length > i; i++) {
@@ -71,12 +79,12 @@ function cuerpo() {
 		element.append(tdEmpleado)
 		let link = document.createElement('a')
 		tdEmpleado.append(link)
-		link.id="id_"+(i-1)
+		link.id = "id_" + (i - 1)
 		link.href = ""
 		link.text = "data Empleado"
 
 	}
-/**Fin data de los empleados */
+	/**Fin data de los empleados */
 
 
 	let id = document.getElementById('id');
@@ -162,36 +170,37 @@ function ordenar(argument) {
 /**Locale storage */
 
 let Eusers = []
-let Elist = JSON.parse(localStorage.getItem("listUsers")) 
-if(Elist==null){
-	Eusers=[]
-}else{
-	Eusers=Elist
+let Elist = JSON.parse(localStorage.getItem("listUsers"))
+if (Elist == null) {
+	Eusers = []
+} else {
+	Eusers = Elist
 }
 console.log(Eusers);
 
-let ArraysID=[]
-for(let i = 0;Eusers.length>i;i++){
-    let suId='id_'+i
-    let Sid = document.getElementById(suId)
-    ArraysID.push(Sid)
+let ArraysID = []
+for (let i = 0; Eusers.length > i; i++) {
+	let suId = 'id_' + i
+	let Sid = document.getElementById(suId)
+	ArraysID.push(Sid)
 }
 
 
 let etiquetas = document.querySelectorAll('td a');
-let Nlinks =[];
-for(let i =0;etiquetas.length>i;i++){
+let Nlinks = [];
+for (let i = 0; etiquetas.length > i; i++) {
 	let e = etiquetas[i]
-	e.href="/data.html"
+	e.href = "/data.html"
 	Nlinks.push(e)
 }
 
-//Seleccionamos las etiquetas 
-idLinks = []
-for(let i =0; Nlinks.length>i;i++){
-	let element = Nlinks[i].id
-	let eS = element.split('_')
-	eS.shift(eS[0])
-	idLinks.push(JSON.parse(eS))
-}
-console.log(idLinks);
+Nlinks.forEach(element => {
+	element.addEventListener('click', () => {
+		let idElement = element.id
+		let Element_1d = idElement.split('_')
+		Element_1d.shift(Element_1d[0])
+		localStorage.setItem('numeroId', Element_1d)
+	})
+})
+
+
